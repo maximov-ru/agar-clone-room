@@ -1,0 +1,258 @@
+﻿<div id="fb-root"></div>
+<!--div id="overlays"
+     style="display:none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 200;">
+    <div id="helloDialog">
+        <form role="form">
+            <div class="form-group">
+                <div style="float: left; margin-left: 22px;"><h2>Агарио Россия</h2></div>
+				<div style="float: left; margin-left: 8px;"><h1>!Выбор режима в настройках!</h1></div>
+				
+				
+				За использование клана [ADM] и [MOD] - бан без предупреждения!
+                <br clear="both"/>
+            </div>
+            <div class="form-group">
+                <input id="nick" class="form-control" placeholder="Ваш Ник" maxlength="24"/>
+				<input id="nick" class="form-control" placeholder="Пароль" maxlength="24"/>
+                <select id="gamemode" class="form-control" onchange="setGameMode($(this).val());" required>
+                    <option selected value="">Все</option>
+                </select>
+                <br clear="both"/>
+            </div>
+            <div id="locationUnknown">
+                <select id="region" class="form-control" onchange="setRegion($('#region').val());" required>
+                    <option selected disabled value=''> -- Режим --</option>
+                    {{#each regions}}
+                        <option value='{{this.val}}'>{{this.name}}</option>
+                    {{else}}
+                        <option disabled value=''>No regions</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                <div class="text-muted region-message CN-China">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+
+                    <a href="https://vk.com/topic-100260998_32611428" class="btn-primary btn btn-info" role="button">!!!Загрузить Скин Бесплатно!!!</a>
+                    <p></p>
+                </div>
+
+                <button disabled type="submit" id="playBtn"
+                        onclick="setNick(document.getElementById('nick').value); return false;"
+                        class="btn btn-play btn-primary btn-needs-server">В Игру!
+                </button>
+                <button onclick="$('#settings, #instructions').toggle();return false;"
+                        class="btn btn-info btn-settings"><i class="glyphicon glyphicon-cog"></i></button>
+                <br clear="both"/>
+            </div>
+            <div id="settings" class="checkbox" style="display:none;">
+                <div class="form-group" id="mainform">
+                    <div id="locationKnown"></div>
+                    <button id="spectateBtn" onclick="spectate(); return false;" disabled
+                            class="btn btn-warning btn-spectate btn-needs-server">Наблюдать
+                    </button>
+                    <br clear="both"/>
+                </div>
+                <div style="margin: 6px;">
+                    <label><input type="checkbox" onchange="setSkins(!$(this).is(':checked'));"> Отключить Скины</label>
+                    <label><input type="checkbox" onchange="setNames(!$(this).is(':checked'));"> Скрыть Ники</label>
+                    <label><input type="checkbox" onchange="setDarkTheme($(this).is(':checked'));"> Темная Схема</label>
+                    <label><input type="checkbox" onchange="setColors($(this).is(':checked'));"> Отключить Цвета</label>
+                    <label><input type="checkbox" onchange="setShowMass($(this).is(':checked'));"> Показывать Массу</label>
+                    <label><input type="checkbox" onchange="setSmooth($(this).is(':checked'));"> Простой Рендер</label>
+                </div>
+            </div>
+        </form>
+        <div id="instructions">
+            <hr/>
+            <center><span class="text-muted">
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
+
+<!-- VK Widget -->
+<div id="vk_groups"></div>
+<script type="text/javascript">
+VK.Widgets.Group("vk_groups", {mode: 0, width: "220", height: "300", color1: 'FFFFFF', color2: '7A2A56', color3: '407B23'}, 100260998);
+</script>
+</span></center>
+        </div>
+        <hr/>
+        <center>
+
+            <center>
+    <span class="text-muted">
+       </span>
+            </center>
+            <div>
+            </div>
+            <small class="text-muted text-center"></small>
+        </center>
+        {{#if links}}
+            <hr style="margin-bottom: 7px; "/>
+            <div style="margin-bottom: 5px; line-height: 32px; margin-left: 6px; height: 32px;">
+                <center>
+                    <footer class='text-center'>
+                        {{#each links}}
+                            {{#unless @first}}|{{/unless}}
+                            <a href='{{this.val}}' class='text-muted'>{{this.name}}</a>
+                        {{/each}}
+                    </footer>
+                </center>
+            </div>
+        {{/if}}
+
+    </div>
+</div-->
+<!---------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="overlays" style="display:none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 200;">
+<style>
+.modal_ok {
+height:420px;
+width:800px;
+border-radius:0 0 15px 15px;
+background-color:#FFF;
+padding:20px;
+margin:0 auto;
+}
+
+.modal_ok_top {
+font-size:40px;
+font-weight:bold;
+text-shadow: 1px 1px 0px rgba(150, 150, 150, 1);
+text-align:center;
+width:100%;
+}
+
+.modal_ok_left {
+padding:10px;
+padding-bottom:10px;
+padding-top:10px;
+border-bottom:1px solid #eee;
+top:15px;
+float:left;
+width:370px;
+height:300px;
+}
+
+.modal_ok_right {
+border-left:1px solid #EEE;
+padding:10px;
+border-bottom:1px solid #eee;
+top:15px;
+float:left;
+width:370px;
+height:300px;
+}
+</style>
+	<div class="modal_ok">
+		<div class="modal_ok_top">Агарио Россия</div>
+		<div class="modal_ok_left">
+			<form class="form-horizontal" role="form">
+				<p>Администрацию проекта Жрать запрещено, Админы никогда не будут жрать других играков - запомните!</p>
+				<center>
+				<input type="nick" class="form-control" style="width:100%;margin-bottom:10px;" id="nick" placeholder="Ник">
+				<input type="password" class="form-control" style="margin-bottom:10px;" id="inputPassword3" placeholder="Пароль">
+				<div id="locationUnknown">
+					<select id="region" class="form-control" onchange="setRegion($('#region').val());" required>
+						<option selected disabled value=''> -- Режим --</option>
+						{{#each regions}}
+							<option value='{{this.val}}'>{{this.name}}</option>
+						{{else}}
+							<option disabled value=''>No regions</option>
+						{{/each}}
+					</select>
+				</div>
+				<button type="submit" class="btn btn-default" onclick="setNick(document.getElementById('nick').value); return false;">Войти</button>
+				<button type="button" class="btn btn-warning" id="spectateBtn" onclick="spectate(); return false;">Наблюдать</button>
+				<hr>
+				<a href="https://vk.com/topic-100260998_32600894" target="_blank" class="btn btn-default btn-lg active" role="button">Загрузить свой скин</a>
+				</center>
+			</form>
+		</div>
+		<div class="modal_ok_right">
+			<center>
+				<div class="btn-group" data-toggle="buttons" >
+					<h3>Настройки</h3>
+					<div class="checkbox">
+					<label>
+					<input type="checkbox" onchange="setSkins(!$(this).is(':checked'));">
+					Отключить Скины
+					</label>
+					</div>
+					<div class="checkbox">
+					<label>
+					<input type="checkbox" onchange="setNames(!$(this).is(':checked'));">
+					Скрыть Ники
+					</label>
+					</div>
+					<div class="checkbox">
+					<label>
+					<input type="checkbox" onchange="setDarkTheme($(this).is(':checked'));">
+					Темная Схема
+					</label>
+					</div>
+					<div class="checkbox">
+					<label>
+					<input type="checkbox" onchange="setShowMass($(this).is(':checked'));">
+					Показывать Массу
+					</label>
+					</div>
+					<div class="checkbox">
+					<label>
+					<input type="checkbox" onchange="setSmooth($(this).is(':checked'));">
+					Простой Рендер
+					</label>
+					</div>
+					<div class="checkbox">
+					<label>
+					<input type="checkbox" onchange="setColors($(this).is(':checked'));">
+					Отключить Цвета
+					</label>
+					</div>
+				</div>
+			</center>
+		</div>
+	</div>
+	{{#if links}}
+		<hr style="margin-bottom: 7px; "/>
+		<div style="margin-bottom: 5px; line-height: 32px; margin-left: 6px; height: 32px;">
+			<center>
+				<footer class='text-center'>
+					{{#each links}}
+						{{#unless @first}}|{{/unless}}
+						<a href='{{this.val}}' class='text-muted'>{{this.name}}</a>
+					{{/each}}
+				</footer>
+			</center>
+	{{/if}}
+</div>
+<!---------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="connecting"
+     style="display:none;position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 100; background-color: rgba(0,0,0,0.5);">
+    <div style="width: 350px; background-color: #FFFFFF; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;">
+        <h2>Подключение</h2>
+
+        <p> ПЛАНОВАЯ ПЕРЕЗАГРУЗКА! Примерно 1 мин ! Спасибо За терпение.
+    </div>
+</div>
+<canvas id="canvas" width="800" height="600"></canvas>
+<input type="text" id="chat_textbox" maxlength="200">
+
+<div style="font-family:'Ubuntu'">&nbsp;</div>
+
+<script type="text/javascript">
+    $('input').keypress(function(e) {
+        if (e.which == '13') {
+            e.preventDefault();
+            if (!isSpectating)
+                setNick(document.getElementById('nick').value);
+        }
+    });
+</script>
+</div>
+<?php session_start(); /* Создание сессий */
+require_once("dbconnect.php"); /* Подключение файла dbconnect.php */
+?>
