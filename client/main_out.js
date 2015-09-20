@@ -1122,10 +1122,30 @@
     var playerStat = null;
     wHandle.isSpectating = false;
     wHandle.setNick = function (arg) {
-        hideOverlays();
-        userNickName = arg;
-        sendNickName();
-        userScore = 0
+        $.ajax({
+            url: '/auth/auth',
+            method:'post',
+            data:{username:$('#nickname').val(),password:$('#pass_fld').val()},
+            dataType:'json',
+            beforeSend: function(j){
+                if(last_request){
+                    last_request.abort();
+                }
+                last_request = j;
+            },
+            success: function(jData){
+                console.log(jData);
+                if(jData.valid){
+                    hideOverlays();
+                    userNickName = arg;
+                    sendNickName();
+                    userScore = 0;
+                }else{
+                    window.pl.html(jData.desc);
+                    window.pl.show().delay(5000).hide();
+                }
+            }
+        });
     };
     wHandle.setRegion = setRegion;
     wHandle.setSkins = function (arg) {

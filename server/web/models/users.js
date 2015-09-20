@@ -1,5 +1,6 @@
-var sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 var Q = require('q');
+var sequelize = require('../db');
 var usersMap = {};
 var mapLoaded = false;
 
@@ -34,7 +35,7 @@ var User = sequelize.define(
                                 cb(null,false);
                             }
                         }else{
-                            cb(null,false);
+                            cb(null,true);
                         }
                     }
                 )().done();
