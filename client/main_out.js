@@ -1144,7 +1144,7 @@
     };
     wHandle.setRegion = setRegion;
     wHandle.setSkins = function (arg) {
-        showSkin = arg
+        showSkin = arg;
     };
     wHandle.setNames = function (arg) {
         showName = arg

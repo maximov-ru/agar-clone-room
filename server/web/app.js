@@ -84,7 +84,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/', index_route);
 app.use('/auth', auth_route);
-app.use('/js', express.static('/srv/agar-clone-room/server/web/js/'));
+app.use('/js', express.static(__dirname+'/js/'));
 
 
 app.post('/', function (req, res, next) {

@@ -1,112 +1,4 @@
 ﻿<div id="fb-root"></div>
-<!--div id="overlays"
-     style="display:none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 200;">
-    <div id="helloDialog">
-        <form role="form">
-            <div class="form-group">
-                <div style="float: left; margin-left: 22px;"><h2>Агарио Россия</h2></div>
-				<div style="float: left; margin-left: 8px;"><h1>!Выбор режима в настройках!</h1></div>
-				
-				
-				За использование клана [ADM] и [MOD] - бан без предупреждения!
-                <br clear="both"/>
-            </div>
-            <div class="form-group">
-                <input id="nickname" class="form-control" placeholder="Ваш Ник" maxlength="24"/>
-                <label for="pass_fld"></label>
-				<input id="pass_fld" class="form-control" placeholder="Пароль" maxlength="24"/>
-                <select id="gamemode" class="form-control" onchange="setGameMode($(this).val());" required>
-                    <option selected value="">Все</option>
-                </select>
-                <br clear="both"/>
-            </div>
-            <div id="locationUnknown">
-                <select id="region" class="form-control" onchange="setRegion($('#region').val());" required>
-                    <option selected disabled value=''> -- Режим --</option>
-                    {{#each regions}}
-                        <option value='{{this.val}}'>{{this.name}}</option>
-                    {{else}}
-                        <option disabled value=''>No regions</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div>
-                <div class="text-muted region-message CN-China">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <div>
-
-                    <a href="https://vk.com/topic-100260998_32611428" class="btn-primary btn btn-info" role="button">!!!Загрузить Скин Бесплатно!!!</a>
-                    <p></p>
-                </div>
-
-                <button disabled type="submit" id="playBtn"
-                        onclick="setNick(document.getElementById('nick').value); return false;"
-                        class="btn btn-play btn-primary btn-needs-server">В Игру!
-                </button>
-                <button onclick="$('#settings, #instructions').toggle();return false;"
-                        class="btn btn-info btn-settings"><i class="glyphicon glyphicon-cog"></i></button>
-                <br clear="both"/>
-            </div>
-            <div id="settings" class="checkbox" style="display:none;">
-                <div class="form-group" id="mainform">
-                    <div id="locationKnown"></div>
-                    <button id="spectateBtn" onclick="spectate(); return false;" disabled
-                            class="btn btn-warning btn-spectate btn-needs-server">Наблюдать
-                    </button>
-                    <br clear="both"/>
-                </div>
-                <div style="margin: 6px;">
-                    <label><input type="checkbox" onchange="setSkins(!$(this).is(':checked'));"> Отключить Скины</label>
-                    <label><input type="checkbox" onchange="setNames(!$(this).is(':checked'));"> Скрыть Ники</label>
-                    <label><input type="checkbox" onchange="setDarkTheme($(this).is(':checked'));"> Темная Схема</label>
-                    <label><input type="checkbox" onchange="setColors($(this).is(':checked'));"> Отключить Цвета</label>
-                    <label><input type="checkbox" onchange="setShowMass($(this).is(':checked'));"> Показывать Массу</label>
-                    <label><input type="checkbox" onchange="setSmooth($(this).is(':checked'));"> Простой Рендер</label>
-                </div>
-            </div>
-        </form>
-        <div id="instructions">
-            <hr/>
-            <center><span class="text-muted">
-<script type="text/javascript" src="//vk.com/js/api/openapi.js?116"></script>
-
-<!-- VK Widget -->
-<div id="vk_groups"></div>
-<script type="text/javascript">
-VK.Widgets.Group("vk_groups", {mode: 0, width: "220", height: "300", color1: 'FFFFFF', color2: '7A2A56', color3: '407B23'}, 100260998);
-</script>
-</span></center>
-        </div>
-        <hr/>
-        <center>
-
-            <center>
-    <span class="text-muted">
-       </span>
-            </center>
-            <div>
-            </div>
-            <small class="text-muted text-center"></small>
-        </center>
-        {{#if links}}
-            <hr style="margin-bottom: 7px; "/>
-            <div style="margin-bottom: 5px; line-height: 32px; margin-left: 6px; height: 32px;">
-                <center>
-                    <footer class='text-center'>
-                        {{#each links}}
-                            {{#unless @first}}|{{/unless}}
-                            <a href='{{this.val}}' class='text-muted'>{{this.name}}</a>
-                        {{/each}}
-                    </footer>
-                </center>
-            </div>
-        {{/if}}
-
-    </div>
-</div-->
 <!---------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="overlays" style="display:none; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: rgba(0,0,0,0.5); z-index: 200;">
 <style>
@@ -152,11 +44,11 @@ height:300px;
 		<div class="modal_ok_top">Агарио Россия</div>
 		<div class="modal_ok_left">
 			<form class="form-horizontal" role="form">
-				<p>Администрацию проекта Жрать запрещено, Админы никогда не будут жрать других играков - запомните!</p>
+				<p>Администрацию проекта Жрать запрещено, Админы никогда не будут жрать других игроков - запомните!</p>
 				<center>
 				<input id="nickname" class="form-control" placeholder="Ваш Ник" maxlength="24"/>
                 <label for="pass_fld"></label>
-                <input id="pass_fld" class="form-control" placeholder="Пароль" maxlength="24"/>
+                <input id="pass_fld" class="form-control" placeholder="Пароль от ника" maxlength="24"/>
 				<div id="locationUnknown">
 					<select id="region" class="form-control" onchange="setRegion($('#region').val());" required>
 						<option selected disabled value=''> -- Режим --</option>
