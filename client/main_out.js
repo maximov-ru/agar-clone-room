@@ -1137,7 +1137,7 @@
                 console.log(jData);
                 if(jData.valid){
                     hideOverlays();
-                    userNickName = arg;
+                    userNickName = $('#nickname').val();
                     sendNickName();
                     userScore = 0;
                 }else{
