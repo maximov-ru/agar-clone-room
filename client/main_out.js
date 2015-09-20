@@ -1127,12 +1127,6 @@
             method:'post',
             data:{username:$('#nickname').val(),password:$('#pass_fld').val()},
             dataType:'json',
-            beforeSend: function(j){
-                if(last_request){
-                    last_request.abort();
-                }
-                last_request = j;
-            },
             success: function(jData){
                 console.log(jData);
                 if(jData.valid){
