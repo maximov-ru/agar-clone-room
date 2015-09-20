@@ -8,7 +8,8 @@ var fs = require('fs');
 var busboy = require('connect-busboy');
 var hbs = require('hbs');
 
-var routes = require('./routes/index');
+var index_route = require('./index_route/index');
+var auth_route = require('./index_route/authorization');
 
 var masterServer = null;
 
@@ -79,7 +80,9 @@ app.use(busboy({limits: {fileSize: 512 * 1024}}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use('/', routes);
+app.use('/', index_route);
+app.use('/auth', auth_route);
+app.use('/js', express.static('js'));
 
 app.post('/', function (req, res, next) {
     var post = req.body;
@@ -153,10 +156,10 @@ app.post('/checkdir', function (req, res, next) {
         app.locals.checkdir(function (ret) {
             if (ret.hasOwnProperty('err')) {
                 res.writeHead(500);
-                res.end(JSON.stringify(ret));
+                res.json(ret);
             } else {
                 res.writeHead(200);
-                res.end(JSON.stringify(ret));
+                res.json(ret);
             }
         });
     }
