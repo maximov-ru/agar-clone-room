@@ -12,9 +12,7 @@ var index_route = require('./routes/index');
 var auth_route = require('./routes/authorization');
 var Users = require('./models/users');
 
-Users.sync({force:true});
-var userobj = Users.build({username:'xamlo',password:'123upyachka'});
-var userobj = Users.build({username:'smexy',password:'3584295'});
+Users.sync();
 var masterServer = null;
 
 var app = express();
