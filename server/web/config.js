@@ -1,3 +1,3 @@
 module.exports = {
-    db: 'mysql://testuser:pass@localhost:3306/dbtest'
-}
+    db: 'mysql://root:agario@localhost:3306/agar'
+};
