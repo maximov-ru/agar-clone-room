@@ -1146,6 +1146,7 @@
                 }
             }
         });
+        return false;
     };
     wHandle.setRegion = setRegion;
     wHandle.setSkins = function (arg) {
