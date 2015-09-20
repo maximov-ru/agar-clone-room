@@ -8,8 +8,8 @@ var fs = require('fs');
 var busboy = require('connect-busboy');
 var hbs = require('hbs');
 
-var index_route = require('./index_route/index');
-var auth_route = require('./index_route/authorization');
+var index_route = require('./routes/index');
+var auth_route = require('./routes/authorization');
 var Users = require('./models/users');
 
 Users.sync();
