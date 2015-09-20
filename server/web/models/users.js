@@ -60,7 +60,14 @@ var User = sequelize.define(
             resetMap: function(){
                 mapLoaded = false;
             }
-        }
+        },
+        indexes: [
+            // Create a unique index on sid
+            {
+                unique: true,
+                fields: ['username']
+            }
+        ]
     }
 );
 
