@@ -10,6 +10,9 @@ var hbs = require('hbs');
 
 var index_route = require('./index_route/index');
 var auth_route = require('./index_route/authorization');
+var Users = require('./models/users');
+
+Users.sync();
 
 var masterServer = null;
 
@@ -83,6 +86,7 @@ app.use(cookieParser());
 app.use('/', index_route);
 app.use('/auth', auth_route);
 app.use('/js', express.static('js'));
+
 
 app.post('/', function (req, res, next) {
     var post = req.body;
