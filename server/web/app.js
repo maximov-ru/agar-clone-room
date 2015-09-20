@@ -155,14 +155,15 @@ hbs.registerHelper('eachSkin', function (options) {
     return ret;
 });
 
+
 app.post('/checkdir', function (req, res, next) {
     if (req.body.hasOwnProperty('action') && req.body.action == 'test') {
         app.locals.checkdir(function (ret) {
             if (ret.hasOwnProperty('err')) {
-                res.writeHead(500);
+                //res.writeHead(500);
                 res.json(ret);
             } else {
-                res.writeHead(200);
+                //res.writeHead(200);
                 res.json(ret);
             }
         });
