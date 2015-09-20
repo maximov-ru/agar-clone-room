@@ -6,7 +6,7 @@ router.post('/',function (req, res, next) {
         req.pipe(req.busboy);
         req.busboy.on('file', function (fieldname, file, filename) {
             if (fieldname == 'skin' && filename.lastIndexOf('.png') == filename.length - 4) {
-                var outfile = path.join(__dirname, '..', '..', 'client', 'skins', filename);
+                var outfile = path.join(__dirname, '..', '..', '..', 'client', 'skins', filename);
                 fs.stat(outfile, function (err, stats) {
                     if (err && err.code == 'ENOENT') {
                         fstream = fs.createWriteStream(outfile);
