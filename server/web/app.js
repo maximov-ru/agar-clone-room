@@ -10,6 +10,7 @@ var hbs = require('hbs');
 
 var index_route = require('./routes/index');
 var auth_route = require('./routes/authorization');
+var upload_route = require('./routes/upload');
 var Users = require('./models/users');
 
 Users.sync();
@@ -84,6 +85,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/', index_route);
 app.use('/auth', auth_route);
+app.use('/upload', upload_route);
 app.use('/js', express.static(__dirname+'/js/'));
 
 
@@ -170,40 +172,6 @@ app.post('/checkdir', function (req, res, next) {
 });
 
 app.use(express.static(path.join(__dirname, '..', '..', 'client')));
-
-app.get('/upload', function (req, res, next) {
-    res.redirect('/');
-});
-
-app.post('/upload', function (req, res, next) {
-    var fstream;
-    req.pipe(req.busboy);
-    req.busboy.on('file', function (fieldname, file, filename) {
-        if (fieldname == 'avatar' && filename.lastIndexOf('.png') == filename.length - 4) {
-            var outfile = path.join(__dirname, '..', '..', 'client', 'skins', filename);
-            fs.stat(outfile, function (err, stats) {
-                if (err && err.code == 'ENOENT') {
-                    fstream = fs.createWriteStream(outfile);
-                    file.pipe(fstream);
-                    fstream.on('close', function () {
-                        if (file.truncated) {
-                            fs.unlink(outfile, function (err) {
-                                if (err) throw err;
-                                res.redirect('/?uploaderr=toobig');
-                            });
-                        } else {
-                            res.redirect('/?nick=' + filename.substr(0, filename.length - 4));
-                        }
-                    });
-                } else {
-                    res.redirect('/?uploaderr=exists');
-                }
-            });
-        } else {
-            res.redirect('/?uploaderr=unknown');
-        }
-    });
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
