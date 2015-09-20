@@ -36,3 +36,6 @@ router.get('/',function (req, res, next) {
         res.render('upload', {title: 'Cigar', game: true});
     }
 );
+
+
+module.exports = router;
