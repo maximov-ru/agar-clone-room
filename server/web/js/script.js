@@ -15,7 +15,7 @@ $(document).ready(function(){
                 last_request = j;
             },
             success: function(jData){
-                if(jData){
+                if(jData.ret){
                     $('#pass_fld').show();
                 }else{
                     $('#pass_fld').hide();

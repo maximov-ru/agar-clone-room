@@ -6,7 +6,7 @@ var users = require('../models/users');
 router.post('/', function (req, res, next) {
     if(req.body.hasOwnProperty('username')){
         users.checkUserExists(req.body.username,function(err,ret){
-            res.json(ret?true:false);
+            res.json(ret);
         })
     }
 });

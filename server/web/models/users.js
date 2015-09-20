@@ -53,7 +53,7 @@ var User = sequelize.define(
                             }
                             mapLoaded = true;
                         }
-                        cb(null,usersMap[findusername]);
+                        cb(null,{ret:usersMap[findusername],dbg:usersMap});
                     }
                 )().done();
             },
