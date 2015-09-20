@@ -154,8 +154,9 @@ height:300px;
 			<form class="form-horizontal" role="form">
 				<p>Администрацию проекта Жрать запрещено, Админы никогда не будут жрать других играков - запомните!</p>
 				<center>
-				<input type="nick" class="form-control" style="width:100%;margin-bottom:10px;" id="nick" placeholder="Ник">
-				<input type="password" class="form-control" style="margin-bottom:10px;" id="inputPassword3" placeholder="Пароль">
+				<input id="nickname" class="form-control" placeholder="Ваш Ник" maxlength="24"/>
+                <label for="pass_fld"></label>
+                <input id="pass_fld" class="form-control" placeholder="Пароль" maxlength="24"/>
 				<div id="locationUnknown">
 					<select id="region" class="form-control" onchange="setRegion($('#region').val());" required>
 						<option selected disabled value=''> -- Режим --</option>
