@@ -23,7 +23,7 @@ var User = sequelize.define(
                             for(var i in users){
                                 var user = users[i];
                                 var uname = user.username.toLowerCase();
-                                usersMap[user] = true;
+                                usersMap[uname] = true;
                             }
                             mapLoaded = true;
                         }
@@ -49,7 +49,7 @@ var User = sequelize.define(
                             for(var i in users){
                                 var user = users[i];
                                 var uname = user.username.toLowerCase();
-                                usersMap[user] = true;
+                                usersMap[uname] = true;
                             }
                             mapLoaded = true;
                         }
