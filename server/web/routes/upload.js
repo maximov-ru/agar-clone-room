@@ -4,7 +4,7 @@ var multer = require('multer');
 var upload = multer({ dest: '../../../client/skins/' })
 var router = express.Router();
 
-app.post('/', upload.single('skin'), function (req, res, next) {
+router.post('/', upload.single('skin'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
 })
