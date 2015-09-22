@@ -1,13 +1,16 @@
 var express = require('express');
 var path = require('path');
 var multer = require('multer');
-var upload = multer({ dest: '../../../client/skins/' })
+var upload = multer({ dest: 'skins/' })
 var router = express.Router();
 
 router.post('/', upload.single('skin'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
-})
+    console.log(req.body); // form fields
+    console.log(req.file); // form files
+    res.status(204).end();
+});
 /*
 router.post('/',function (req, res, next) {
         var fstream;
