@@ -2,6 +2,7 @@
 var http = require('http');
 var webapp = require('./web/app');
 var WebSocket = require('ws');
+var io_func = require('socket.io');
 var fs = require("fs");
 var ini = require('./modules/ini.js');
 
@@ -76,6 +77,8 @@ MasterServer.prototype.start = function() {
     webapp.set('port', this.config.serverPort);
     webapp.setMaster(MS);
     this.httpServer = http.createServer(webapp);
+    var io = io_func(this.httpServer);
+    webapp.setIO(io);
 
     this.httpServer.listen(this.config.serverPort);
     this.httpServer.on('error', onError);

@@ -1067,6 +1067,7 @@
         localProtocolHttps = "https:" == localProtocol;
     var nCanvas, ctx, mainCanvas, lbCanvas, chatCanvas, canvasWidth, canvasHeight, qTree = null,
         ws = null,
+        socket_io = io(),
         nodeX = 0,
         nodeY = 0,
         nodesOnScreen = [],
@@ -1198,48 +1199,12 @@
     };
     wHandle.connect = wsConnect;
 
-    //This part is for loading custom skins
-    var data = {"action": "test"};
-    //var response = null;
-    wjQuery.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "checkdir", //Relative or absolute path to response.php file
-        data: data,
-        success: function (data) {
-            //alert(data["names"]);
-            //response = data["names"];
-            knownNameDict = data['names'];
-        }
+    socket_io.on('namesList',function(names){
+        knownNameDict = names;
     });
-
-
-    var interval1Id = setInterval(function () {
-        //console.log("logging every 5 seconds");
-        //console.log(Aa);
-
-        wjQuery.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "checkdir", //Relative or absolute path to response.php file
-            data: data,
-            success: function (data) {
-                //alert(data["names"]);
-                //response = data["names"];
-                knownNameDict = data['names'];
-            }
-        });
-        //console.log(response);
-        /*for (var i = 0; i < response.length; i++) {
-            //console.log(response[insert]);
-            if (-1 == knownNameDict.indexOf(response[i])) {
-                knownNameDict.push(response[i]);
-                //console.log("Add:"+response[i]);
-            }
-        }*/
-        //knownNameDict = response;
-    }, 15000);
-
+    socket_io.on('connect',function(){
+        socket_io.emit('getNamesList','');
+    });
 
     var delay = 500,
         oldX = -1,
@@ -1744,6 +1709,6 @@
         setInterval(renderFavicon, 1E3);
         setInterval(drawChatBoard, 1E3);
     });
-    wHandle.onload = gameLoop
+    wHandle.onload = gameLoop;
 //console.log(knownNameDict);
 })(window, window.jQuery);

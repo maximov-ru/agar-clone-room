@@ -6,15 +6,21 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var busboy = require('connect-busboy');
+var http = require('http');
 var hbs = require('hbs');
 
 var index_route = require('./routes/index');
 var auth_route = require('./routes/authorization');
 var upload_route = require('./routes/upload');
 var Users = require('./models/users');
+var Skins = require('./models/skins');
 
 Users.sync();
+Skins.sync();
+Skins.initNames();
 var masterServer = null;
+var io = null;
+var totalUsers = 0;
 
 var app = express();
 
@@ -22,6 +28,27 @@ app.setMaster = function (server) {
     masterServer = server;
     this.updateRegions();
 };
+
+app.setIO = function (socket_io){
+    io = socket_io;//add socket io object for controll this
+    io.on('connection', function(socket){
+        console.log('a user connected');//TODO: удалить это после теста
+        totalUsers++;
+        socket.on('disconnect', function(){
+            totalUsers--;
+            console.log('user disconnected');//TODO: удалить это после теста
+        });
+        socket.on('getNamesList',function(data){
+            socket.emit('namesList',Skins.getSkinNames());
+        });
+    });
+    Skins.setChangeCb(
+        function (names){
+            io.emit('namesList',names);
+        }
+    );
+};
+
 
 app.updateRegions = function () {
     app.locals.regions = [];
@@ -111,64 +138,6 @@ app.get('/info', function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.writeHead(200);
     res.end(JSON.stringify(masterServer.info));
-});
-
-app.locals.skins = [];
-
-app.locals.checkdir = function (maxage, suffix) {
-    var cache = null,
-        timestamp = Date.now() - maxage - 1;
-
-    return function (cb) {
-        if (cache == null || (Date.now() - timestamp) > maxage) {
-            fs.readdir(path.join(__dirname, '..', '..', 'client', 'skins'), function (err, files) {
-                timestamp = Date.now();
-                if (err) {
-                    cache = {action: 'test', err: true};
-                    cb(cache);
-                }
-                var tmp = {action: 'test', names: []};
-                for (var i = 0; i < files.length; i++) {
-                    if (files[i].length > suffix.length && files[i].slice(-suffix.length) === suffix) {
-                        tmp.names.push(files[i].slice(0, -suffix.length));
-                    }
-                }
-                cache = tmp;
-                app.locals.skins = tmp.names;
-                cb(cache);
-            });
-        } else {
-            cb(cache);
-        }
-    }
-}(500, '.png');
-app.locals.checkdir(function(){});
-
-hbs.registerHelper('eachSkin', function (options) {
-    var ret = "";
-
-    if (app.locals.skins != null) {
-        for (var i = 0, j = app.locals.skins.length; i < j; i++) {
-            ret = ret + options.fn({name: app.locals.skins[i]});
-        }
-    }
-
-    return ret;
-});
-
-
-app.post('/checkdir', function (req, res, next) {
-    if (req.body.hasOwnProperty('action') && req.body.action == 'test') {
-        app.locals.checkdir(function (ret) {
-            if (ret.hasOwnProperty('err')) {
-                //res.writeHead(500);
-                res.json(ret);
-            } else {
-                //res.writeHead(200);
-                res.json(ret);
-            }
-        });
-    }
 });
 
 app.use(express.static(path.join(__dirname, '..', '..', 'client')));
