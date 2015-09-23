@@ -23,14 +23,11 @@ router.post('/', upload.single('skin'), function (req, res, next) {
             var newPath = path.join(__dirname, '..', '..', '..', 'client', 'skins', filename);
             var oldPath = path.join(__dirname, '..', '..', '..', 'skins', req.file.filename);
             fs.renameSync(oldPath, newPath);
-            if(fs.accessSync(newPath, fs.R_OK)){
-                Skins.addSkinName(skinname);
-                Skins.build({skin: skinname});
-                msg = 'Успешно загружен скин для '+skinname;
-                console.log(msg);
-            }else{
-                console.log('file not exists');
-            }
+
+            Skins.addSkinName(skinname);
+            Skins.build({skin: skinname});
+            msg = 'Успешно загружен скин для '+skinname;
+
         }else{
             console.log('no file!');
         }
