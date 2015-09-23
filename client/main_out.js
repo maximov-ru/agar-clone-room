@@ -1117,6 +1117,7 @@
         splitIcon = new Image,
         ejectIcon = new Image,
         noRanking = false;
+    console.log(socket_io);
     splitIcon.src = "split.png";
     ejectIcon.src = "feed.png";
     var wCanvas = document.createElement("canvas");
@@ -1200,6 +1201,7 @@
     wHandle.connect = wsConnect;
 
     socket_io.on('namesList',function(names){
+        console.log(names);
         knownNameDict = names;
     });
     socket_io.on('connect',function(){
