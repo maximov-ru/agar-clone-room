@@ -75,13 +75,14 @@ MasterServer.prototype.start = function() {
     this.onTick(); // Init
     MS = this;
     var app = express();
-
+    console.log(app);
     //webapp.set('port', this.config.serverPort);
     //webapp.setMaster(MS);
     this.httpServer = http.Server(app);
     //this.httpServer = webapp.listen(this.config.serverPort);
     var io = io_func(this.httpServer);
     this.httpServer.listen(this.config.serverPort);
+
     webapp.appStart(app,MS,io);
     io.attach(this.httpServer);
     io.on("connection", function( socket )

@@ -19,7 +19,7 @@ var app = null,
 var totalUsers = 0;
 
 function appStart(app_obj,master,io_serv) {
-
+    console.log(2,app_obj);
     app = app_obj;
     masterServer = master;
     io = io_serv
