@@ -1,7 +1,9 @@
 // Imports
 var http = require('http');
+var express = require('express');
 var webapp = require('./web/app');
 var WebSocket = require('ws');
+var io_func = require('socket.io');
 var fs = require("fs");
 var ini = require('./modules/ini.js');
 
@@ -72,12 +74,24 @@ MasterServer.prototype.start = function() {
     setInterval(this.onTick.bind(this),this.config.updateTime * 1000);
     this.onTick(); // Init
     MS = this;
-
-    webapp.set('port', this.config.serverPort);
-    webapp.setMaster(MS);
-    this.httpServer = http.createServer(webapp);
-
+    var app = express();
+    console.log('1',app);
+    //webapp.set('port', this.config.serverPort);
+    //webapp.setMaster(MS);
+    this.httpServer = http.Server(app);
+    //this.httpServer = webapp.listen(this.config.serverPort);
+    var io = io_func(this.httpServer);
     this.httpServer.listen(this.config.serverPort);
+
+    webapp.appStart(app,MS,io);
+    io.attach(this.httpServer);
+    io.on("connection", function( socket )
+    {
+        console.log( "A user connected." );
+    });
+    //webapp.setIO(io);
+
+
     this.httpServer.on('error', onError);
     this.httpServer.on('listening', onListening);
 };
@@ -160,7 +174,7 @@ MasterServer.prototype.addServer = function(ip,port,reg) {
         ws.on('error', function err(er) {
             console.log("[Master] Error connecting to a game server!");
         });
-        
+
         ws.on('open', function open() {
             id = MS.getNextID(); // Get new ID
             ws.send('Hi'+id);
@@ -199,7 +213,7 @@ MasterServer.prototype.addServer = function(ip,port,reg) {
         return;
     }
 
-    
+
 };
 
 MasterServer.prototype.createServer = function(key,mode) {
@@ -219,7 +233,7 @@ MasterServer.prototype.createServer = function(key,mode) {
     // Add to region/server list
     this.REGIONS[key].push(h);
     h.server.region = key; // Gameserver variable
-    this.gameServers[id - 1] = h; 
+    this.gameServers[id - 1] = h;
 };
 
 MasterServer.prototype.removeServer = function(id,log) {
@@ -232,7 +246,7 @@ MasterServer.prototype.removeServer = function(id,log) {
         if (index > -1) { // Remove from region array
             this.REGIONS[h.server.region].splice(index,1);
         }
-        
+
         h.remove(); // Remove
         if (log) console.log(this.getName()+" Removed Game Server with ID: "+id);
     } else {
