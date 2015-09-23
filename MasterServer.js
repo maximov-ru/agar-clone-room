@@ -76,10 +76,14 @@ MasterServer.prototype.start = function() {
 
     webapp.set('port', this.config.serverPort);
     webapp.setMaster(MS);
-    //this.httpServer = http.createServer(webapp);
-    this.httpServer = webapp.listen(this.config.serverPort);
+    this.httpServer = http.Server(webapp);
+    //this.httpServer = webapp.listen(this.config.serverPort);
     var io = io_func(this.httpServer);
-    //io.attach(this.httpServer);
+    io.attach(this.httpServer);
+    io.on("connection", function( socket )
+    {
+        console.log( "A user connected." );
+    });
     webapp.setIO(io);
 
     this.httpServer.listen(this.config.serverPort);
