@@ -29,35 +29,6 @@ function appStart(app_obj,master,io_serv) {
 
 
     //var app = express();
-
-    app.setMaster = function (server) {
-        masterServer = server;
-        app.updateRegions();
-    };
-
-    app.setIO = function (socket_io) {
-        io = socket_io;//add socket io object for controll this
-        io.on('connection', function (socket) {
-            console.log('a user connected');//TODO: удалить это после теста
-            totalUsers++;
-            socket.on('disconnect', function () {
-                totalUsers--;
-                console.log('user disconnected');//TODO: удалить это после теста
-            });
-            socket.on('getNamesList', function (data) {
-                socket.emit('namesList', Skins.getSkinNames());
-            });
-        });
-        Skins.setChangeCb(
-            function (names) {
-                io.emit('namesList', names);
-            }
-        );
-    };
-    app.setMaster(masterServer);
-    app.setIO(io);
-
-
     app.updateRegions = function () {
         app.locals.regions = [];
         for (var key in masterServer.REGIONS) {
@@ -94,6 +65,36 @@ function appStart(app_obj,master,io_serv) {
             }
         }
     };
+
+    app.setMaster = function (server) {
+        masterServer = server;
+        app.updateRegions();
+    };
+
+    app.setIO = function (socket_io) {
+        io = socket_io;//add socket io object for controll this
+        io.on('connection', function (socket) {
+            console.log('a user connected');//TODO: удалить это после теста
+            totalUsers++;
+            socket.on('disconnect', function () {
+                totalUsers--;
+                console.log('user disconnected');//TODO: удалить это после теста
+            });
+            socket.on('getNamesList', function (data) {
+                socket.emit('namesList', Skins.getSkinNames());
+            });
+        });
+        Skins.setChangeCb(
+            function (names) {
+                io.emit('namesList', names);
+            }
+        );
+    };
+    app.setMaster(masterServer);
+    app.setIO(io);
+
+
+
 
 // view engine setup
     app.set('views', path.join(__dirname, 'views'));
