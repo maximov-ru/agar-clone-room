@@ -1,5 +1,6 @@
 // Imports
 var http = require('http');
+var express = require('express');
 var webapp = require('./web/app');
 var WebSocket = require('ws');
 var io_func = require('socket.io');
@@ -73,20 +74,23 @@ MasterServer.prototype.start = function() {
     setInterval(this.onTick.bind(this),this.config.updateTime * 1000);
     this.onTick(); // Init
     MS = this;
+    var app = express();
 
-    webapp.set('port', this.config.serverPort);
-    webapp.setMaster(MS);
-    this.httpServer = http.Server(webapp);
+    //webapp.set('port', this.config.serverPort);
+    //webapp.setMaster(MS);
+    this.httpServer = http.Server(app);
     //this.httpServer = webapp.listen(this.config.serverPort);
     var io = io_func(this.httpServer);
+    this.httpServer.listen(this.config.serverPort);
+    webapp.appStart(app,MS,io);
     io.attach(this.httpServer);
     io.on("connection", function( socket )
     {
         console.log( "A user connected." );
     });
-    webapp.setIO(io);
+    //webapp.setIO(io);
 
-    this.httpServer.listen(this.config.serverPort);
+
     this.httpServer.on('error', onError);
     this.httpServer.on('listening', onListening);
 };
