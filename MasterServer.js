@@ -76,7 +76,7 @@ MasterServer.prototype.start = function() {
 
     webapp.set('port', this.config.serverPort);
     webapp.setMaster(MS);
-    this.httpServer = http.createServer(webapp);
+    this.httpServer = http.Server(webapp);
     var io = io_func(this.httpServer);
     webapp.setIO(io);
 
