@@ -32,7 +32,7 @@ function appStart(app_obj,master,io_serv) {
 
     app.setMaster = function (server) {
         masterServer = server;
-        this.updateRegions();
+        app.updateRegions();
     };
 
     app.setIO = function (socket_io) {
