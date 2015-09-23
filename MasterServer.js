@@ -75,7 +75,7 @@ MasterServer.prototype.start = function() {
     this.onTick(); // Init
     MS = this;
     var app = express();
-    console.log(app);
+    console.log('1',app);
     //webapp.set('port', this.config.serverPort);
     //webapp.setMaster(MS);
     this.httpServer = http.Server(app);

@@ -183,4 +183,4 @@ function appStart(app_obj,master,io_serv) {
 }
 
 module.exports.app = app;
-module.exports.appStart = appStart();
+module.exports.appStart = appStart;
