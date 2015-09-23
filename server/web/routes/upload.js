@@ -25,7 +25,7 @@ router.post('/', upload.single('skin'), function (req, res, next) {
             fs.renameSync(oldPath, newPath);
 
             Skins.addSkinName(skinname);
-            Skins.build({skin: skinname});
+            Skins.build({skin: skinname}).save();
             msg = 'Успешно загружен скин для '+skinname;
 
         }else{

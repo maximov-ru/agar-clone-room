@@ -26,7 +26,11 @@ function appStart(app_obj,master,io_serv) {
     Users.sync();
     Skins.sync();
     Skins.initNames();
-
+    /* variables */
+    app.locals.regions = [];
+    app.locals.modes = [{val: '', name: 'FFA'},
+        {val: ':teams', name: 'Teams'},
+        {val: ':experimental', name: 'Experimental'}];
 
     //var app = express();
     app.updateRegions = function () {
@@ -100,11 +104,6 @@ function appStart(app_obj,master,io_serv) {
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'hbs');
 
-    /* variables */
-    app.locals.regions = [];
-    app.locals.modes = [{val: '', name: 'FFA'},
-        {val: ':teams', name: 'Teams'},
-        {val: ':experimental', name: 'Experimental'}];
 
 // uncomment to display links at the bottom of the login page
 //app.locals.links = [{val: 'tos.html', name: 'Terms of Service'}, {val: '#', name: 'Another link...'}];
