@@ -27,10 +27,15 @@ router.post('/', upload.single('skin'), function (req, res, next) {
                 Skins.addSkinName(skinname);
                 Skins.build({skin: skinname});
                 msg = 'Успешно загружен скин для '+skinname;
-
+                console.log(msg);
+            }else{
+                console.log('file not exists');
             }
+        }else{
+            console.log('no file!');
         }
     }
+    console.log('done upload');
     res.render('upload', {title: 'Cigar', game: true,msg:msg});
 
 
