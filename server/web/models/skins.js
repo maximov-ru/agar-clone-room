@@ -60,4 +60,4 @@ var Skins = sequelize.define(
     }
 );
 
-module.exports = User;
+module.exports = Skins;
