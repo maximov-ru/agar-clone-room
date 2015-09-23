@@ -1205,6 +1205,7 @@
         knownNameDict = names;
     });
     socket_io.on('connect',function(){
+        console.log('connected now try emit getNamesList');
         socket_io.emit('getNamesList','');
     });
 
