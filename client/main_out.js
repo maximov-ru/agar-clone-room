@@ -5,7 +5,7 @@
      * Example: 127.0.0.1:443
      *
      */
-    var CONNECTION_URL = "104.43.200.205:451";
+    var CONNECTION_URL = "40.127.134.9:451";
     /**
      * Enter path to the skin image folder
      * To take skins from the official server enter: "http://agar.io/skins/"
@@ -1217,7 +1217,7 @@
         scoreText = null,
         skins = {},
         knownNameDict = "poland;usa;china;russia;canada;australia;spain;brazil;germany;ukraine;france;sweden;hitler;north korea;south korea;japan;united kingdom;earth;greece;latvia;lithuania;estonia;finland;norway;cia;maldivas;austria;nigeria;reddit;yaranaika;confederate;9gag;indiana;4chan;italy;bulgaria;tumblr;2ch.hk;hong kong;portugal;jamaica;german empire;mexico;sanik;switzerland;croatia;chile;indonesia;bangladesh;thailand;iran;iraq;peru;moon;botswana;bosnia;netherlands;european union;taiwan;pakistan;hungary;satanist;qing dynasty;matriarchy;patriarchy;feminism;ireland;texas;facepunch;prodota;cambodia;steam;piccolo;india;kc;denmark;quebec;ayy lmao;sealand;bait;tsarist russia;origin;vinesauce;stalin;belgium;luxembourg;stussy;prussia;8ch;argentina;scotland;sir;romania;belarus;wojak;doge;nasa;byzantium;imperial japan;french kingdom;somalia;turkey;mars;pokerface;8;irs;receita federal;facebook".split(";"),
-        knownNameDict_noDisp = ["8", "nasa"],
+        knownNameDict_noDisp = ["8", "nasa", "smexy"],
         ib = ["_canvas'blob"];
     Cell.prototype = {
         id: 0,
