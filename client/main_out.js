@@ -1009,9 +1009,9 @@
                 var b;
                 if (null == teamScores) {
                     for (ctx.font = "20px Ubuntu", b = 0; b < leaderBoard.length; ++b) {
-                        c = leaderBoard[b].name || "An unnamed cell";
+                        c = leaderBoard[b].name || "Лох без ника";
                         if (!showName) {
-                            (c = "An unnamed cell");
+                            (c = "Лох без ника");
                         }
                         if (-1 != nodesOnScreen.indexOf(leaderBoard[b].id)) {
                             playerCells[0].name && (c = playerCells[0].name);
